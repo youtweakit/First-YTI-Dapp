@@ -228,10 +228,10 @@ class ConfirmationPage extends Component {
                             window.show_alert('warning', 'Finding address to confirm', [
                                 ['This confirmation code corresponds to address that is already confirmed'],
                                 ['Country', address_details.country.toUpperCase()],
-                                ['State', address_details.state.toUpperCase()],
+                                ['Email', address_details.state.toUpperCase()],
                                 ['City', address_details.city.toUpperCase()],
-                                ['Address', address_details.address.toUpperCase()],
-                                ['ZIP code', address_details.zip.toUpperCase()]
+                                ['Tweak', address_details.address.toUpperCase()],
+                               /* ['ZIP code', address_details.zip.toUpperCase()] */
                             ]);
                             return;
                         }
