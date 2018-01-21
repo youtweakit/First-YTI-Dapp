@@ -14,7 +14,7 @@ contract ProofOfPhysicalAddress
         string name;
 
         string country;
-        string state;
+        string email;
         string city;
         string location;
         string zip;
