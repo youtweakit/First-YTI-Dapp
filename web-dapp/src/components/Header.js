@@ -8,7 +8,7 @@ class Header extends Component {
             <header className="header">
             <div className="container">
                 <Link to="/"><a href="#" className="logo" title="Just TweakiT!"></a></Link>
-                {window.location.pathname !== '/confirm' ? <Link to="/confirm"><a href="#" className="button button_verify">TweakiT!</a></Link> : ''}
+                {window.location.pathname !== '/confirm' ? <Link to="/confirm"><a href="#" className="button button_verify">I am Brand!</a></Link> : ''}
             </div>
             </header>
         );
