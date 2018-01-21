@@ -27,7 +27,7 @@ class App extends Component {
         if (window.my_web3) {
             console.log('web3 found, getting contract');
             clearInterval(this.state.web3_checker);
-            var cconf = ContractOutput.ProofOfPhysicalAddress;
+            var cconf = ContractOutput.YTIhackdapp;
             var contract = window.my_web3.eth.contract(cconf.abi).at(cconf.address);
             window.megaContract = contract;
             this.setState({
