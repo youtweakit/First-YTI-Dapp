@@ -13,7 +13,7 @@ var cfg = {
 
     rpc: 'https://sokol.poa.network',
 
-    signer: '0xdbde11e51b9fcc9c455de9af89729cf37d835156',
+    signer: '0xdbde11e51b9fcc9c455de9af89729cf37d835156', // тут наверное подписант? надо понять что это за такое
 
     code_length: 10,
     code_symbols: 'abcdhkmnprstwxy345789',
