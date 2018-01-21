@@ -15,9 +15,9 @@ contract ProofOfPhysicalAddress
 
         string country;
         string email;
-        string city;
-        string location;
-        string zip;
+        string brand;
+        string tweakmsg;
+        
 
         uint256 creation_block;
         bytes32 confirmation_code_sha3;
@@ -143,7 +143,7 @@ contract ProofOfPhysicalAddress
     }
 
     // returns (found/not found, index if found/0 if not found, confirmed/not confirmed)
-    function user_address_by_address(address wallet, string country, string state, string city, string location, string zip)
+    function user_address_by_address(address wallet, string country, string email, string brand, string tweakmsg)
     public constant returns(bool, uint256, bool)
     {
         require(user_exists(wallet));
@@ -151,10 +151,9 @@ contract ProofOfPhysicalAddress
         {
             if (
                    str_eq(users[wallet].physical_addresses[ai].country, country)
-                && str_eq(users[wallet].physical_addresses[ai].state, state)
-                && str_eq(users[wallet].physical_addresses[ai].city, city)
-                && str_eq(users[wallet].physical_addresses[ai].location, location)
-                && str_eq(users[wallet].physical_addresses[ai].zip, zip))
+                && str_eq(users[wallet].physical_addresses[ai].email, email)
+                && str_eq(users[wallet].physical_addresses[ai].brand, brand)
+                && str_eq(users[wallet].physical_addresses[ai].tweakmsg, tweakmsg))
             {
                 return (true, ai, user_address_confirmed(wallet, ai));
             }
@@ -178,15 +177,15 @@ contract ProofOfPhysicalAddress
 
     function user_address(address wallet, uint256 address_index)
     public constant returns (
-        string country, string state, string city, string location, string zip)
+        string country, string email, string brand, string tweakmsg)
     {
         require(user_exists(wallet));
         return (
             users[wallet].physical_addresses[address_index].country,
-            users[wallet].physical_addresses[address_index].state,
-            users[wallet].physical_addresses[address_index].city,
-            users[wallet].physical_addresses[address_index].location,
-            users[wallet].physical_addresses[address_index].zip
+            users[wallet].physical_addresses[address_index].email,
+            users[wallet].physical_addresses[address_index].brand,
+            users[wallet].physical_addresses[address_index].tweakmsg
+            
         );
     }
 
@@ -207,27 +206,25 @@ contract ProofOfPhysicalAddress
 
     function register_address(
         string name,
-        string country, string state, string city, string location, string zip,
+        string country, string email, string brand, string tweakmsg,
         uint256 price_wei,
         bytes32 confirmation_code_sha3, uint8 sig_v, bytes32 sig_r, bytes32 sig_s)
     public payable
     {
         require(!str_eq(name, ''));
         require(!str_eq(country, ''));
-        require(!str_eq(state, ''));
-        require(!str_eq(city, ''));
-        require(!str_eq(location, ''));
-        require(!str_eq(zip, ''));
+        require(!str_eq(email, ''));
+        require(!str_eq(brand, ''));
+        require(!str_eq(tweakmsg, ''));
         require(msg.value >= price_wei);
 
         bytes32 data = keccak256(
             msg.sender,
             name,
             country,
-            state,
-            city,
-            location,
-            zip,
+            email,
+            brand,
+            tweakmsg,
             price_wei,
             confirmation_code_sha3
         );
@@ -238,17 +235,16 @@ contract ProofOfPhysicalAddress
         {
             // check if this address is already registered
             bool found;
-            (found, , ) = user_address_by_address(msg.sender, country, state, city, location, zip);
+            (found, , ) = user_address_by_address(msg.sender, country, email, brand, tweakmsg);
 
             if (found) revert();
 
             // not registered yet:
             pa.name = name;
             pa.country = country;
-            pa.state = state;
-            pa.city = city;
-            pa.location = location;
-            pa.zip = zip;
+            pa.email = email;
+            pa.brand = brand;
+            pa.tweakmsg = tweakmsg;
             pa.creation_block = block.number;
             pa.confirmation_code_sha3 = confirmation_code_sha3;
             pa.confirmation_block = 0;
@@ -262,10 +258,9 @@ contract ProofOfPhysicalAddress
             users[msg.sender].creation_block = block.number;
             pa.name = name;
             pa.country = country;
-            pa.state = state;
-            pa.city = city;
-            pa.location = location;
-            pa.zip = zip;
+            pa.email = email;
+            pa.brand = brand;
+            pa.tweakmsg = tweakmsg;
             pa.creation_block = block.number;
             pa.confirmation_code_sha3 = confirmation_code_sha3;
             pa.confirmation_block = 0;
