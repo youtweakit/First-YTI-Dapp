@@ -1,7 +1,7 @@
 {
   "name": "proof-of-address",
   "version": "1.0.0",
-  "description": "Smart contract and DApp by poa.network to create proof of a physical address",
+  "description": "Ytweak it izvrashenia MVP",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "solc": "^0.4.15",
-    "web3": "^0.20.0"
+    "web3": "^0.20.0",
+    "bignumber.js": "5.0.0"
   }
 }
