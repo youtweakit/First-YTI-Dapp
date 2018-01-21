@@ -9,7 +9,8 @@ class RegisterAddressPage extends Component {
             name: '',
             country: 'US',
             city: '',
-           
+            tweak:'',
+            email:'',
          
             loading: false,
         };
@@ -98,10 +99,10 @@ class RegisterAddressPage extends Component {
             contract.user_address_by_address(
                 opts.wallet,
                 opts.params.country,
-                opts.params.state,
+                opts.params.email,
                 opts.params.city,
-                opts.params.address,
-                opts.params.zip,
+                opts.params.tweak,
+                
                 { from: opts.wallet }, (err, result) => {
 
                 if (err) {
@@ -126,10 +127,10 @@ class RegisterAddressPage extends Component {
         contract.register_address.estimateGas(
             opts.params.name,
             opts.params.country,
-            opts.params.state,
+            opts.params.email,
             opts.params.city,
-            opts.params.address,
-            opts.params.zip,
+            opts.params.tweak,
+           /* opts.params.zip,*/
             opts.params.price_wei,
             opts.confirmation_code_sha3,
             opts.v,
@@ -160,10 +161,10 @@ class RegisterAddressPage extends Component {
             contract.register_address(
                 opts.params.name,
                 opts.params.country,
-                opts.params.state,
+                opts.params.email, 
                 opts.params.city,
-                opts.params.address,
-                opts.params.zip,
+                opts.params.tweak,
+               /* opts.params.zip,*/
                 opts.params.price_wei,
                 opts.confirmation_code_sha3,
                 opts.v,
@@ -186,10 +187,10 @@ class RegisterAddressPage extends Component {
         console.log('Form data:');
         console.log('name = ' + this.state.name);
         console.log('country = ' + this.state.country);
-        console.log('state = ' + this.state.state);
+        console.log('state = ' + this.state.email); 
         console.log('city = ' + this.state.city);
-        console.log('address = ' + this.state.address);
-        console.log('zip = ' + this.state.zip);
+        console.log('tweak = ' + this.state.tweak);
+      /*  console.log('zip = ' + this.state.zip); */
 
         var wallet = this.props.my_web3 && this.props.my_web3.eth.accounts[0];
         if (!wallet) {
@@ -208,19 +209,19 @@ class RegisterAddressPage extends Component {
             window.show_alert('warning', 'Verification', 'Please provide COUNTRY');
             return;
         }
-/*
+
         if (!this.state.state) {
-            window.show_alert('warning', 'Verification', 'Please provide STATE');
+            window.show_alert('warning', 'Verification', 'Please provide Email');
             return;
-        } */
+        } *
 
         if (!this.state.city) {
             window.show_alert('warning', 'Verification', 'Please provide CITY');
             return;
         }
-/*
-        if (!this.state.address) {
-            window.show_alert('warning', 'Verification', 'Please provide ADDRESS');
+
+        if (!this.state.tweak) {
+            window.show_alert('warning', 'Verification', ' You are going Without Tweak???Crazy? )) ');
             return;
         }
 
@@ -237,10 +238,10 @@ class RegisterAddressPage extends Component {
                 wallet: wallet,
                 name: this.state.name,
                 country: this.state.country,
-                state: this.state.state,
+                state: this.state.email,
                 city: this.state.city,
-                address: this.state.address,
-                zip: this.state.zip,
+                tweak: this.state.tweak,
+               /* zip: this.state.zip,*/
             },
             success: (res) => {
                 if (!res) {
@@ -277,7 +278,7 @@ class RegisterAddressPage extends Component {
                         this.setState({
                             loading: false
                         });
-                        window.show_alert('error', 'Checking if address exists', [['Error', err.message]]);
+                        window.show_alert('error', 'Checking if Tweak exists', [['Error', err.message]]);
                         return;
                     }
                     if (exists) {
@@ -285,7 +286,7 @@ class RegisterAddressPage extends Component {
                         this.setState({
                             loading: false
                         });
-                        window.show_alert('error', 'Checking if address exists', 'This address is already registered under your current MetaMask account');
+                        window.show_alert('error', 'Checking if tweak is unique', 'This tweak is already registered under your current MetaMask account');
                         return;
                     }
 
@@ -314,8 +315,8 @@ class RegisterAddressPage extends Component {
                                     });
                                     if (!res) {
                                         console.log('Empty response from server');
-                                        window.show_alert('error', 'Postcard sending', [
-                                            ['Transaction to register address was mined, but postcard was not sent'],
+                                        window.show_alert('error', 'Tweaking', [
+                                            ['Transaction to register tweak was mined, but tweak was not sent('],
                                             ['Transaction ID', tx_id],
                                             ['Error', 'empty response from server']
                                         ]);
@@ -323,19 +324,19 @@ class RegisterAddressPage extends Component {
                                     }
                                     if (!res.ok) {
                                         console.log('Not ok response from server: ' + res.err);
-                                        window.show_alert('error', 'Postcard sending', [
-                                            ['Transaction to register address was mined, but postcard was not sent'],
+                                        window.show_alert('error', 'Tweaking', [
+                                            ['Transaction to register tweak was mined, but tweak was not sent'],
                                             ['Request ID', res.x_id ],
                                             ['Transaction ID', tx_id],
                                             ['Error', res.err]
                                         ]);
                                         return;
                                     }
-                                    window.show_alert('success', 'Address registered!', [
-                                        ['Transaction to register address was mined and postcard was sent'],
+                                    window.show_alert('success', 'Tweak is registered!', [
+                                        ['Transaction to register tweak was mined and Your Tweak send to Brand'],
                                         ['Transaction ID', tx_id],
-                                        ['Expected delivery date', res.result.expected_delivery_date],
-                                        ['Mail type', res.result.mail_type]
+                                      /*  ['Expected delivery date', res.result.expected_delivery_date], */
+                                      /*  ['Mail type', res.result.mail_type] этот факиншит нужно проанализировать и вывернуть в нашу сторону*/ 
                                     ]);
                                 },
                                 error: (xhr, ajaxOptions, thrownError) => {
@@ -343,7 +344,7 @@ class RegisterAddressPage extends Component {
                                     this.setState({
                                         loading: false
                                     });
-                                    window.show_alert('error', 'Postcard sending', [['Server error', xhr.statusText + ' (' + xhr.status + ')']]);
+                                    window.show_alert('error', 'Tweaking', [['Server error', xhr.statusText + ' (' + xhr.status + ')']]);
                                 }
                             });
                         }
@@ -352,7 +353,7 @@ class RegisterAddressPage extends Component {
                             this.setState({
                                 loading: false
                             });
-                            window.show_alert('error', 'Register address', 'Error is empty but tx_id is also empty!');
+                            window.show_alert('error', 'Register tweak', 'Error is empty but tx_id is also empty!');
                         }
                     });
                 });
@@ -373,9 +374,9 @@ class RegisterAddressPage extends Component {
             <section className="content address table">
                 <div className="table-cell table-cell_left">
                     <div className="address-content">
-                        <h1 className="title">Proof of physical address</h1>
+                        <h1 className="title">YouTweak.iT - Ideas sharing Dapp</h1>
                         <p className="description">
-                            This DApps can be used to verify that you have access to a certain postal address  in U.S. by receiving a postcard with confirmation code.
+                            This DApps can be used both by Brands and by Tweakers! tweakers send ideas - Brand get verify and accept or don't accept Tweaks, but anyway Delivery of Tweak and Revenue is Guarantied!  
                         </p>
                         <form action="" className="address-form">
                             <div className="address-form-i">
@@ -398,7 +399,7 @@ class RegisterAddressPage extends Component {
                                         <span className="address-question">
                                             <span className="address-question-tooltip">
                                                 <span className="text">
-                                                    At the present moment address verification is available only in the United States.
+                                                   Will make it WorldWide available!.
                                                 </span>
                                             </span>
                                         </span>
@@ -421,20 +422,20 @@ class RegisterAddressPage extends Component {
                                       
             </select>
                                 </div>
-                               /* <div className="right">
+                                <div className="right">
                                     <label for="" className="label">
-                                        State
+                                        E-mail
                                         <span className="address-question">
                                             <span className="address-question-tooltip">
                                                 <span className="text">
-                                                    Select one of the states from the dropdown list
+                                                    Provide contact Email
                                                 </span>
                                             </span>
                                         </span>
                                     </label>
                                     {
-                                    <input type="text" className="input" name="state" value={this.state.state} onChange={this.on_change} />
-                                    */}
+                                    <input type="text" className="input" name="email" value={this.state.email} onChange={this.on_change} />
+                                   }
                                    /* <select className="input" name="state" style={{ 'backgroundColor': 'white' }} value={this.state.state} onChange={this.on_change}>
                                         <option value="AA">U.S. Armed Forces – Americas</option>
                                         <option value="AE">U.S. Armed Forces – Europe</option>
@@ -530,17 +531,17 @@ class RegisterAddressPage extends Component {
                                 </div> */
                             </div>
                             <div className="address-form-i">
-                               /* <label for="" className="label">
-                                    Address
+                                <label for="" className="label">
+                                    Tweak
                                     <span className="address-question">
                                         <span className="address-question-tooltip">
                                             <span className="text">
-                                                Enter the rest of the address
+                                                Enter our Tweaking suggestion here
                                             </span>
                                         </span>
                                     </span>
                                 </label>
-                                <input type="text" className="input" name="address" value={this.state.address} onChange={this.on_change} />  
+                                <input type="text" className="input" name="tweak" value={this.state.tweak} onChange={this.on_change} />  
                                 */
                             </div>
                             <button type="button" className="button button_order" onClick={this.order_clicked}>TweakiT!</button>
