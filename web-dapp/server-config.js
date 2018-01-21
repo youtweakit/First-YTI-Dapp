@@ -11,7 +11,7 @@ var cfg = {
         params: {},
     },
 
-    rpc: 'http://localhost:8545',
+    rpc: 'https://sokol.poa.network',
 
     signer: '0xdbde11e51b9fcc9c455de9af89729cf37d835156',
 
