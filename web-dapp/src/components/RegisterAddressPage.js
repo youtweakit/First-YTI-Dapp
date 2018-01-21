@@ -10,7 +10,7 @@ class RegisterAddressPage extends Component {
             country: 'US',
             city: '',
            
-           */ state&zip&adress removed?/*
+         
             loading: false,
         };
     }
