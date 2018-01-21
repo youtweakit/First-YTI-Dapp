@@ -88,10 +88,10 @@ class ConfirmationPage extends Component {
                 }
                 console.log('***** RESULT=', result);
                 address_details.country = result[0];
-                address_details.state = result[1];
+                address_details.email = result[1];
                 address_details.city = result[2];
-                address_details.address = result[3];
-                address_details.zip = result[4];
+                address_details.tweak = result[3];
+               /* address_details.zip = result[4]; */
                 return callback(null, address_details);
             });
         });
@@ -251,10 +251,10 @@ class ConfirmationPage extends Component {
                                     ['Transaction to confirm address was mined'],
                                     ['Transaction ID', tx_id],
                                     ['Country', address_details.country.toUpperCase()],
-                                    ['State', address_details.state.toUpperCase()],
+                                    ['Email', address_details.state.toUpperCase()],
                                     ['City', address_details.city.toUpperCase()],
-                                    ['Address', address_details.address.toUpperCase()],
-                                    ['ZIP code', address_details.zip.toUpperCase()]
+                                    ['Tweak', address_details.address.toUpperCase()]
+                                   /* ['ZIP code', address_details.zip.toUpperCase()] */
                                 ]);
                             }
                             else {
