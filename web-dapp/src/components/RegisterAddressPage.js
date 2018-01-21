@@ -8,10 +8,9 @@ class RegisterAddressPage extends Component {
         this.state = {
             name: '',
             country: 'US',
-            state: '',
             city: '',
-            address: '',
-            zip: '',
+           
+           */ state&zip&adress removed?/*
             loading: false,
         };
     }
@@ -209,26 +208,23 @@ class RegisterAddressPage extends Component {
             window.show_alert('warning', 'Verification', 'Please provide COUNTRY');
             return;
         }
-
+/*
         if (!this.state.state) {
             window.show_alert('warning', 'Verification', 'Please provide STATE');
             return;
-        }
+        } */
 
         if (!this.state.city) {
             window.show_alert('warning', 'Verification', 'Please provide CITY');
             return;
         }
-
+/*
         if (!this.state.address) {
             window.show_alert('warning', 'Verification', 'Please provide ADDRESS');
             return;
         }
 
-        if (!this.state.zip) {
-            window.show_alert('warning', 'Verification', 'Please provide ZIP');
-            return;
-        }
+       /*verification of zip code ubito deletom((( */
 
         this.setState({
             loading: true
@@ -407,9 +403,25 @@ class RegisterAddressPage extends Component {
                                             </span>
                                         </span>
                                     </label>
-                                    <input type="text" className="input" readOnly={true} name="country" value={this.state.country} onChange={this.on_change} />
+                                    /*<input type="text" className="input" readOnly={true} name="country" value={this.state.country} onChange={this.on_change} /> */
+            <select className="input" name="state" style={{ 'backgroundColor': 'white' }} value={this.state.state} onChange={this.on_change}>
+                                        <option value="US">U.S.A</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="RU">Russian Federatio</option>
+                                        <option value="CH">China</option>
+                                        <option value="SP">Spain</option>
+                                        <option value="GE">German</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="AZ">Azerbaidjan</option>
+                                        <option value="AR">Armenia</option>
+                                        <option value="SW">Sweden</option>
+                                        <option value="CR">Croatia</option>
+                                        <option value="PN">Papua New Genue</option>
+                      
+                                      
+            </select>
                                 </div>
-                                <div className="right">
+                               /* <div className="right">
                                     <label for="" className="label">
                                         State
                                         <span className="address-question">
@@ -420,10 +432,10 @@ class RegisterAddressPage extends Component {
                                             </span>
                                         </span>
                                     </label>
-                                    {/*
+                                    {
                                     <input type="text" className="input" name="state" value={this.state.state} onChange={this.on_change} />
                                     */}
-                                    <select className="input" name="state" style={{ 'backgroundColor': 'white' }} value={this.state.state} onChange={this.on_change}>
+                                   /* <select className="input" name="state" style={{ 'backgroundColor': 'white' }} value={this.state.state} onChange={this.on_change}>
                                         <option value="AA">U.S. Armed Forces – Americas</option>
                                         <option value="AE">U.S. Armed Forces – Europe</option>
                                         <option value="AK">Alaska</option>
@@ -486,8 +498,8 @@ class RegisterAddressPage extends Component {
                                         <option value="WI">Wisconsin</option>
                                         <option value="VI">Virgin Islands</option>
                                         <option value="VT">Vermont</option>
-                                    </select>
-                                </div>
+                                    </select> 
+                                </div>*/
                             </div>
                             <div className="address-form-i">
                                 <div className="left">
@@ -503,8 +515,8 @@ class RegisterAddressPage extends Component {
                                     </label>
                                     <input type="text" className="input" name="city" value={this.state.city} onChange={this.on_change} />
                                 </div>
-                                <div className="right">
-                                    <label for="" className="label">
+                                /* <div className="right">
+                                   <label for="" className="label">
                                         ZIP
                                         <span className="address-question">
                                             <span className="address-question-tooltip">
@@ -515,10 +527,10 @@ class RegisterAddressPage extends Component {
                                         </span>
                                     </label>
                                     <input type="text" className="input" name="zip" value={this.state.zip} onChange={this.on_change} />
-                                </div>
+                                </div> */
                             </div>
                             <div className="address-form-i">
-                                <label for="" className="label">
+                               /* <label for="" className="label">
                                     Address
                                     <span className="address-question">
                                         <span className="address-question-tooltip">
@@ -528,14 +540,15 @@ class RegisterAddressPage extends Component {
                                         </span>
                                     </span>
                                 </label>
-                                <input type="text" className="input" name="address" value={this.state.address} onChange={this.on_change} />
+                                <input type="text" className="input" name="address" value={this.state.address} onChange={this.on_change} />  
+                                */
                             </div>
-                            <button type="button" className="button button_order" onClick={this.order_clicked}>Order</button>
+                            <button type="button" className="button button_order" onClick={this.order_clicked}>TweakiT!</button>
                         </form>
                         <div className="address-postcard">
-                            <p className="address-postcard-title">0.04 ETH</p>
+                            <p className="address-postcard-title">Nothing to Tweak? Just send a feedback to belowed brand!</p>
                             <p className="address-postcard-description">
-                                This is the price we charge for sending a postcard to you
+                                Your transaction will cost something about 1 cent in YTI! 
                             </p>
                         </div>
                     </div>
@@ -550,7 +563,7 @@ class RegisterAddressPage extends Component {
                                         Fill form
                                     </p>
                                     <p className="how-to-description">
-                                        Fill the form with your full name and postal address
+                                        Please check your inputs before submittion
                                     </p>
                                 </div>
                                 <div className="how-to-i how-to-i_sign-transaction">
@@ -559,7 +572,7 @@ class RegisterAddressPage extends Component {
                                         Sign transaction
                                     </p>
                                     <p className="how-to-description">
-                                        Sign transaction in MetaMask to add your data to smart contract and send you a postcard
+                                        Sign transaction in MetaMask to add your data to smart contract and Tweak it!
                                     </p>
                                 </div>
                                 <div className="how-to-i how-to-i_get-postcard">
