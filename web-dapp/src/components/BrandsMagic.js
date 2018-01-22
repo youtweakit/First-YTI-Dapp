@@ -289,16 +289,17 @@ class BrandsMagic extends Component {
                         <div className="postcard">
                             <p className="postcard-title">Enter your unique code here:</p>
                             <form action="" className="postcard-form">
-                                <input type="text" className={'postcard-input ' + this.state.confirmed_class} name="confirmation_code_plain" value={this.state.confirmation_code_plain} onChange={this.on_change}/>
+                                <input type="text" className={'postcard-input ' + this.state.confirmed_class} name="confirmation_code_plain" value={this.state.confirma$
+                                <input type="text" className={'postcard-input ' + this.state.confirmed_class} name="tweakers_address" value={this.state.tweakers_adress$
                                 <button type="button" className="postcard-button" onClick={this.confirm_clicked}></button>
                             </form>
                             <p>
                                 Type code from the postcard. Letter case is irrelevant.
                             </p>
                         </div>
-                        <h1 className="title">Verify your address</h1>
+                        <h1 className="title">Verify your access</h1>
                         <p className="description">
-                            Enter confirmation code from the postcard you received, sign the transaction and finalize the verification process.
+                            Enter confirmation code and tweakers address you received, sign the transaction and finalize the verification process.
                         </p>
                     </div>
                 </div>
@@ -309,4 +310,5 @@ class BrandsMagic extends Component {
     }
 };
 
-export default ConfirmationPage;
+export default BrandsMagic;
+
