@@ -12,7 +12,7 @@ const Lob = require('lob')(config.lob_api_key, { apiVersion: '2017-06-16' });
 logger.log(prelog + 'reading postcard templates');
 const pc_front = fs.readFileSync(path.join(__dirname, '../postcard/front.html'), 'utf8');
 const pc_back = fs.readFileSync(path.join(__dirname, '../postcard/back.html'), 'utf8');
-
+// TODO Reconf for mailgun
 /*
 var countries = [];
 
