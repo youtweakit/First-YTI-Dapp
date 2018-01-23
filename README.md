@@ -2,6 +2,6 @@
 
 
 Using mailGun for sending an e-mail with secret code and tweakers wallet address to brand
-Works on Sokol.poa.network Test net
-Dev in progress!!!
+Works on Sokol.poa.network Testnet
+Development is in progress!!!
 
